@@ -1,0 +1,388 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>个人博客 - Mr.Tsang 的博客</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="node+mongo+vue.js   搭建个人博客网站架构
+
+server 服务端
+admin 后台
+web 前台 
+
+
+开始搭建
+
+
+vue create admin   后端
+vue crea,"> 
+    <meta name="author" content="Mr.Tsang"> 
+    <link rel="alternative" href="atom.xml" title="Mr.Tsang 的博客" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-8691406134231910",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads"
+        src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">Mr.Tsang 的博客</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="icon-home image-icon" href="javascript:;" data-url="http://yoursite.com"></a>
+    <div title="播放/暂停" class="icon-play"></div>
+    <h3 class="subtitle">个人博客</h3>
+    <div class="social">
+        <!--<div class="like-icon">-->
+            <!--<a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+        <!--</div>-->
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">个人博客</h1>
+        <div class="stuff">
+            <span>一月 16, 2020</span>
+            
+
+        </div>
+        <div class="content markdown">
+            <h1 id="node-mongo-vue-js-搭建个人博客"><a href="#node-mongo-vue-js-搭建个人博客" class="headerlink" title="node+mongo+vue.js   搭建个人博客"></a>node+mongo+vue.js   搭建个人博客</h1><h2 id="网站架构"><a href="#网站架构" class="headerlink" title="网站架构"></a>网站架构</h2><blockquote>
+<ul>
+<li>server 服务端</li>
+<li>admin 后台</li>
+<li>web 前台 </li>
+</ul>
+</blockquote>
+<p><strong>开始搭建</strong></p>
+<blockquote>
+<ul>
+<li><code>vue create admin</code>   后端</li>
+<li><code>vue create web</code>   前端</li>
+</ul>
+</blockquote>
+<p><strong>下载第三方模块</strong></p>
+<blockquote>
+<p><code>cd admin</code> 进入admin文件夹</p>
+<blockquote>
+<p><code>vue add element</code> 安装element框架</p>
+</blockquote>
+<blockquote>
+<p><code>vue add router</code> 安装vue路由 router</p>
+</blockquote>
+<p><code>npm run dev</code> 启动项目</p>
+</blockquote>
+<p><strong>1.提交数据</strong></p>
+<blockquote>
+<p>需要下载第三方模块 axios</p>
+</blockquote>
+<blockquote>
+<p><code>npm install axios --save</code></p>
+</blockquote>
+<p> 2.在src中新建http.js 文件 用于传递数据</p>
+<p>  代码如下</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> axios</span><br><span class="line">   <span class="keyword">const</span>  http = axios.create(&#123;</span><br><span class="line">     baseURL:<span class="string">'http://localhost:3000/admin/api'</span>,</span><br><span class="line">&#125;) </span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> http;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="服务端"><a href="#服务端" class="headerlink" title="服务端"></a>服务端</h2><ol>
+<li><p>在server文件夹里，下载一写模块</p>
+<blockquote>
+<ul>
+<li><code>cnpm install express@next</code>  &nbsp; &nbsp;   express框架</li>
+<li><code>cnpm install mongoose</code> &nbsp; &nbsp;  mongoose 数据模型</li>
+<li><code>cnpm install cors</code>  &nbsp; &nbsp;     cors 解决跨域</li>
+</ul>
+</blockquote>
+<p>2.下载完之后 </p>
+<blockquote>
+<ul>
+<li>新建routers文件夹 在里面再新建admin文件夹 </li>
+<li>然后在admin中创建index.js 文件</li>
+</ul>
+</blockquote>
+</li>
+</ol>
+<p>2.1代码如下:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** admin 后台数据接口 **/</span></span><br><span class="line"> <span class="built_in">module</span>.exports  = <span class="function"><span class="params">app</span> =&gt;</span>&#123;</span><br><span class="line">     <span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">"express"</span>);</span><br><span class="line">     <span class="keyword">const</span> router = express.Router();</span><br><span class="line">  </span><br><span class="line">     <span class="comment">//新建分类分类接口</span></span><br><span class="line">     <span class="keyword">const</span> CategoryModel = <span class="built_in">require</span>(<span class="string">'../../models/Category'</span>);</span><br><span class="line">  </span><br><span class="line">     <span class="comment">//后台分类管理</span></span><br><span class="line">     router.post(<span class="string">'/categories'</span>,<span class="keyword">async</span>(req,res)=&gt;&#123;</span><br><span class="line">         </span><br><span class="line">      &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">    </span><br><span class="line"> app.use(<span class="string">'/admin/api'</span>,router);</span><br></pre></td></tr></table></figure>
+<h2 id="服务端中间介"><a href="#服务端中间介" class="headerlink" title="服务端中间介"></a>服务端中间介</h2><p>3.在server里的index.js中引入</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">"express"</span>);</span><br><span class="line"><span class="keyword">const</span> app = express();</span><br><span class="line"></span><br><span class="line"><span class="comment">//中间介</span></span><br><span class="line">app.use(express.json());</span><br><span class="line"><span class="comment">// 解决跨域</span></span><br><span class="line">app.use(<span class="built_in">require</span>(<span class="string">'cors'</span>)());</span><br><span class="line"></span><br><span class="line"><span class="comment">// 引入连接数据库接口</span></span><br><span class="line"><span class="built_in">require</span>(<span class="string">'./routers/admin'</span>)(app);</span><br><span class="line"><span class="built_in">require</span>(<span class="string">'./plugin/db'</span>)(app);</span><br><span class="line"></span><br><span class="line">app.listen(<span class="number">3000</span>,()=&gt;&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"http://localhost:3000"</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="连接数据库"><a href="#连接数据库" class="headerlink" title="连接数据库"></a>连接数据库</h2><p>4.连接mongoose数据库</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//数据库连接</span></span><br><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="params">app</span> =&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">const</span> mongoose =  <span class="built_in">require</span>(<span class="string">'mongoose'</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//连接数据库</span></span><br><span class="line">    mongoose.connect(<span class="string">"mongodb://127.0.0.1:27017/king"</span>,&#123;</span><br><span class="line">        useNewUrlParser: <span class="literal">true</span>,</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>5.创建数据模型</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> mongoose = <span class="built_in">require</span>(<span class="string">"mongoose"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> schema = <span class="keyword">new</span> mongoose.Schema(&#123;</span><br><span class="line">    name:&#123;<span class="attr">type</span>:<span class="built_in">String</span>&#125;,</span><br><span class="line">    date:&#123;</span><br><span class="line">         type:<span class="built_in">String</span>,</span><br><span class="line">         <span class="keyword">default</span>:<span class="keyword">new</span> <span class="built_in">Date</span>(),</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">module</span>.exports = mongoose.model(<span class="string">'Category'</span>,schema)</span><br></pre></td></tr></table></figure>
+
+<h2 id="后端-admin"><a href="#后端-admin" class="headerlink" title="后端 admin"></a>后端 admin</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports  = <span class="function"><span class="params">app</span> =&gt;</span>&#123;</span><br><span class="line">   <span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">"express"</span>);</span><br><span class="line">   <span class="keyword">const</span> router = express.Router();</span><br><span class="line"></span><br><span class="line">   <span class="comment">//新建分类分类接口</span></span><br><span class="line">   <span class="keyword">const</span> CategoryModel = <span class="built_in">require</span>(<span class="string">'../../models/Category'</span>);</span><br><span class="line"></span><br><span class="line">   <span class="comment">//后台分类管理</span></span><br><span class="line">   router.post(<span class="string">'/categories'</span>,<span class="keyword">async</span>(req,res)=&gt;&#123;</span><br><span class="line">        <span class="comment">//创建数据  creat()方法</span></span><br><span class="line">        <span class="comment">//将数据插入req.body</span></span><br><span class="line">       <span class="keyword">const</span> model = <span class="keyword">await</span> CategoryModel.create(req.body);</span><br><span class="line">       <span class="comment">//发送数据</span></span><br><span class="line">       res.send(model);</span><br><span class="line">    &#125;)</span><br><span class="line">    app.use(<span class="string">'/admin/api'</span>,router);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>返回数据给前台</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//返回数据</span></span><br><span class="line">router.get(<span class="string">'/categories'</span>,<span class="keyword">async</span>(req,res,doc)=&gt;&#123;</span><br><span class="line">    <span class="comment">//获取数据</span></span><br><span class="line">    <span class="keyword">const</span> items = <span class="keyword">await</span> CategoryModel.find();</span><br><span class="line">    res.send(items);</span><br><span class="line">    <span class="built_in">console</span>.log(items);</span><br><span class="line">   </span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="前端-web"><a href="#前端-web" class="headerlink" title="前端 web"></a>前端 web</h2><p><strong>前台接收数据</strong></p>
+<figure class="highlight v"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">  <span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line"></span><br><span class="line">    data() &#123;</span><br><span class="line">      <span class="keyword">return</span> &#123;</span><br><span class="line">        <span class="comment">//数据</span></span><br><span class="line">        items: [],</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    methods: &#123;</span><br><span class="line">    <span class="comment">//异步请求数据</span></span><br><span class="line">      async fetch() &#123;</span><br><span class="line">        <span class="keyword">const</span> res = await <span class="keyword">this</span>.$http<span class="variable">.get</span>('categories');</span><br><span class="line">        <span class="comment">//将后台请求的数据存放在items中</span></span><br><span class="line">        <span class="keyword">this</span><span class="variable">.items</span> = res<span class="variable">.data</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 钩子函数</span></span><br><span class="line">    created() &#123;</span><br><span class="line">      <span class="comment">// 执行函数</span></span><br><span class="line">      <span class="keyword">this</span><span class="variable">.fetch</span>();</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p><strong>前台遍历（展示）数据</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">el-table</span> <span class="attr">:data</span>=<span class="string">"items"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">el-table-column</span> <span class="attr">prop</span>=<span class="string">"_id"</span> <span class="attr">label</span>=<span class="string">"id"</span>&gt;</span><span class="tag">&lt;/<span class="name">el-table-column</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">el-table-column</span> <span class="attr">prop</span>=<span class="string">"name"</span> <span class="attr">label</span>=<span class="string">"分类名称"</span>&gt;</span><span class="tag">&lt;/<span class="name">el-table-column</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">el-table</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="编辑功能"><a href="#编辑功能" class="headerlink" title="编辑功能"></a>编辑功能</h2><blockquote>
+<ul>
+<li>前台push 方法  <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">el-button</span> <span class="attr">size</span>=<span class="string">"mini"</span> @<span class="attr">click</span>=<span class="string">"$router.push(`/categories/edit/$&#123;scope.row._id&#125;`)"</span>&gt;</span>编辑<span class="tag">&lt;/<span class="name">el-button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+scope.row._id  取这一行数据的id  基于element框架</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>后台put  方法</li>
+</ul>
+</blockquote>
+ <figure class="highlight v"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//更新数据</span></span><br><span class="line">router<span class="variable">.put</span>('/categories/:id',async(req,res)=&gt;&#123;</span><br><span class="line">    <span class="comment">//更新俩个参数 一个是分类的id 另一个是分类内容</span></span><br><span class="line">    <span class="keyword">const</span> model = await CategoryModel<span class="variable">.findByIdAndUpdate</span>(req<span class="variable">.params</span><span class="variable">.id</span>,req<span class="variable">.body</span>);</span><br><span class="line">    res<span class="variable">.send</span>(model);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="删除功能"><a href="#删除功能" class="headerlink" title="删除功能"></a>删除功能</h2><blockquote>
+<ul>
+<li>前台remove方法</li>
+</ul>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">el-button</span> <span class="attr">size</span>=<span class="string">"mini"</span> <span class="attr">type</span>=<span class="string">"danger"</span>  @<span class="attr">click</span>=<span class="string">"remove(scope.row)"</span> &gt;</span>删除<span class="tag">&lt;/<span class="name">el-button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<ul>
+<li>remove()函数</li>
+</ul>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> remove(row)&#123;</span><br><span class="line">   <span class="comment">/* element 插件*/</span></span><br><span class="line">   <span class="keyword">this</span>.$confirm(<span class="string">`确定要删除改分类 "<span class="subst">$&#123;row.name&#125;</span>"`</span>, <span class="string">'提示'</span>, &#123;</span><br><span class="line">     confirmButtonText: <span class="string">'确定'</span>,</span><br><span class="line">     cancelButtonText: <span class="string">'取消'</span>,</span><br><span class="line">     type: <span class="string">'warning'</span></span><br><span class="line">   &#125;).then(<span class="keyword">async</span> () =&gt; &#123;</span><br><span class="line">     <span class="keyword">const</span> res = <span class="keyword">await</span> <span class="keyword">this</span>.$http.delete(<span class="string">`categories/<span class="subst">$&#123;row._id&#125;</span>`</span>);</span><br><span class="line">     <span class="keyword">this</span>.$message(&#123;</span><br><span class="line">       type: <span class="string">'success'</span>,</span><br><span class="line">       message: <span class="string">'删除成功!'</span></span><br><span class="line">     &#125;);</span><br><span class="line">     <span class="keyword">this</span>.fetch();</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<ul>
+<li>后台接口</li>
+</ul>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 删除数据</span></span><br><span class="line">router.delete(<span class="string">'/categories/:id'</span>,<span class="keyword">async</span>(req,res)=&gt;&#123;</span><br><span class="line">   <span class="keyword">await</span> CategoryModel.findByIdAndDelete(req.params.id,req.body);</span><br><span class="line">   res.send(&#123;</span><br><span class="line">       success:<span class="literal">true</span></span><br><span class="line">   &#125;) </span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="通用CRUD接口"><a href="#通用CRUD接口" class="headerlink" title="通用CRUD接口"></a>通用CRUD接口</h2><blockquote>
+<ul>
+<li>改接口</li>
+</ul>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">app.use(<span class="string">'/admin/api/rest/:resource'</span>,router);   通用接口地址</span><br></pre></td></tr></table></figure>
+<blockquote>
+<ul>
+<li>将 categories 删除  路径 改为 /</li>
+</ul>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//后台分类管理</span></span><br><span class="line">router.post(<span class="string">'/categories'</span>,<span class="keyword">async</span>(req,res)=&gt;&#123;</span><br><span class="line">    <span class="comment">//创建数据  creat()方法 将数据插入req.body</span></span><br><span class="line">    <span class="keyword">const</span> model = <span class="keyword">await</span> CategoryModel.create(req.body);</span><br><span class="line">    <span class="comment">//发送数据</span></span><br><span class="line">    res.send(model);</span><br><span class="line">&#125;)</span><br><span class="line"> </span><br><span class="line"> 改为</span><br><span class="line"> </span><br><span class="line"><span class="comment">//后台分类管理</span></span><br><span class="line">router.post(<span class="string">'/'</span>,<span class="keyword">async</span>(req,res)=&gt;&#123;</span><br><span class="line">     <span class="comment">//创建数据  creat()方法 将数据插入req.body</span></span><br><span class="line">    <span class="keyword">const</span> model = <span class="keyword">await</span> CategoryModel.create(req.body);</span><br><span class="line">    <span class="comment">//发送数据</span></span><br><span class="line">    res.send(model);</span><br><span class="line"> &#125;)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<ul>
+<li>在express.Router 加上参数 接受resource</li>
+</ul>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> router = express.Router(&#123;</span><br><span class="line">    <span class="comment">// 接受数据模型传过来的参数  resource   </span></span><br><span class="line">     mergeParams:<span class="literal">true</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+
+<blockquote>
+<ul>
+<li>再去改前台接口 将categories 改为 rest/categories  </li>
+<li>请求路径为：</li>
+<li>Request URL: <a href="http://localhost:3000/admin/api/rest/categories" target="_blank" rel="noopener">http://localhost:3000/admin/api/rest/categories</a> </li>
+<li>接口设置完成后 会报以下错误</li>
+<li><font color="red">Error: Cannot find module ‘../../models/categories’ </font></li>
+<li>错误说明 接口找不到category模型 需要创建分类数据模型</li>
+<li><code>cnpm i inflection --save</code>  下载</li>
+</ul>
+</blockquote>
+<p> <strong>解决方案</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//将后台接口所有的模型Model改为 req.Model</span></span><br><span class="line">app.use(<span class="string">'/admin/api/rest/:resource'</span>,<span class="keyword">async</span>(req,res,next) =&gt;&#123;</span><br><span class="line">        <span class="keyword">const</span> modelName = <span class="built_in">require</span>(<span class="string">'inflection'</span>).classify(req.params.resource);</span><br><span class="line">        req.Model = <span class="built_in">require</span>(<span class="string">`../../models/<span class="subst">$&#123;modelName&#125;</span>`</span>);</span><br><span class="line">        next();</span><br><span class="line">&#125;,router); </span><br><span class="line"></span><br><span class="line">router.get(<span class="string">'/'</span>,<span class="keyword">async</span>(req,res)=&gt;&#123;</span><br><span class="line">    <span class="comment">//获取数据</span></span><br><span class="line">    <span class="keyword">const</span> queryOpctions = &#123;&#125;;</span><br><span class="line">    <span class="keyword">if</span>(req.Model.modelName == <span class="string">"Category"</span>)&#123;</span><br><span class="line">        queryOpctions.populate = <span class="string">'parent'</span>;  </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/* 查询上级分类 */</span></span><br><span class="line">    <span class="keyword">const</span> items = <span class="keyword">await</span> req.Model.find().setOptions(queryOpctions);</span><br><span class="line">    res.send(items);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="分页功能"><a href="#分页功能" class="headerlink" title="分页功能"></a><strong>分页功能</strong></h2><blockquote>
+<ul>
+<li>前台: 设置layout，表示需要显示的内容，用逗号分隔，布局元素会依次显示。prev表示上一页，next为下一页，pager表示页码列表，除此以外还提供了jumper和total，size和特殊的布局符号-&gt;，-&gt;后的元素会靠右显示，jumper表示跳页元素，total表示总条目数，size用于设置每页显示的页码数量。</li>
+</ul>
+</blockquote>
+<figure class="highlight v"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 分页样式--&gt;</span><br><span class="line"> &lt;div <span class="keyword">class</span>=<span class="string">"pagination"</span>&gt;</span><br><span class="line">    &lt;el-pagination background layout=<span class="string">"total, prev, pager, next"</span> :current-page=<span class="string">"query.pageIndex"</span>        :page-size=<span class="string">"query.pageSize"</span></span><br><span class="line">        :total=<span class="string">"pageTotal"</span> @current-change=<span class="string">"handlePageChange"</span>&gt;&lt;/el-pagination&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;!-- 分页样式--&gt;</span><br></pre></td></tr></table></figure>
+<p>JavaScirpt 实现功能</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- js实现 --&gt;</span><br><span class="line">data()&#123;</span><br><span class="line">    <span class="keyword">return</span>&#123;</span><br><span class="line">         query: &#123;</span><br><span class="line">                    pageIndex: <span class="number">1</span>,</span><br><span class="line">                    pageSize: <span class="number">8</span></span><br><span class="line">                &#125;,</span><br><span class="line">                editVisible: <span class="literal">false</span>,</span><br><span class="line">                pageTotal: <span class="string">''</span>,</span><br><span class="line">                idx: <span class="number">-1</span>,</span><br><span class="line">                id: <span class="number">-1</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">methods:&#123;</span><br><span class="line">        <span class="comment">//分页方法</span></span><br><span class="line">         handlePageChange(val) &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(val);</span><br><span class="line">            <span class="keyword">this</span>.$<span class="keyword">set</span>(this.query, 'pageIndex', val);</span><br><span class="line">            this.getData();</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<ul>
+<li><font color="red">数据结合（重点）</font></li>
+<li>items 是表格数据 逻辑转换</li>
+</ul>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">el-table</span> <span class="attr">:data</span>=<span class="string">"items.slice((query.pageIndex -1) * query.pageSize,query.pageIndex * query.pageSize)"</span>  <span class="attr">border</span> <span class="attr">class</span>=<span class="string">"table"</span> <span class="attr">ref</span>=<span class="string">"multipleTable"</span> <span class="attr">header-cell-class-name</span>=<span class="string">"table-header"</span> @<span class="attr">selection-change</span>=<span class="string">"handleSelectionChange"</span>&gt;</span> <span class="tag">&lt;/<span class="name">el-table</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="搜索功能"><a href="#搜索功能" class="headerlink" title="搜索功能"></a>搜索功能</h2><blockquote>
+<ul>
+<li>前台代码</li>
+</ul>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">el-input</span> <span class="attr">v-model</span>=<span class="string">"search"</span> <span class="attr">placeholder</span>=<span class="string">"用户名"</span> <span class="attr">class</span>=<span class="string">"handle-input mr10"</span> <span class="attr">clearable</span>&gt;</span><span class="tag">&lt;/<span class="name">el-input</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">el-button</span> <span class="attr">type</span>=<span class="string">"primary"</span> <span class="attr">icon</span>=<span class="string">"el-icon-search"</span> @<span class="attr">click</span>=<span class="string">"handleSearch"</span>&gt;</span>搜索<span class="tag">&lt;/<span class="name">el-button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<ul>
+<li>后台代码</li>
+</ul>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">data()&#123;</span><br><span class="line">    <span class="keyword">return</span>&#123;</span><br><span class="line">            search: <span class="string">''</span>,  </span><br><span class="line">            searchData: <span class="string">''</span>,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//监听search里的数据</span></span><br><span class="line">watch: &#123;</span><br><span class="line">    search(newVal, oldVal) &#123;</span><br><span class="line">        <span class="keyword">if</span> (!newVal) &#123;</span><br><span class="line">            <span class="keyword">this</span>.getData();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;,</span><br><span class="line">methods:&#123;</span><br><span class="line">    <span class="comment">//重点</span></span><br><span class="line">    handleSearch()&#123;</span><br><span class="line">         <span class="keyword">const</span> search = <span class="keyword">this</span>.search;</span><br><span class="line">            <span class="keyword">if</span> (search) &#123;</span><br><span class="line">                <span class="keyword">this</span>.searchData = <span class="keyword">this</span>.items.filter(<span class="function"><span class="keyword">function</span> (<span class="params">item</span>) </span>&#123;</span><br><span class="line">                    <span class="keyword">return</span> <span class="built_in">Object</span>.keys(item).some(<span class="function"><span class="keyword">function</span> (<span class="params">key</span>) </span>&#123;</span><br><span class="line">                        <span class="keyword">return</span> <span class="built_in">String</span>(item[key]).toLowerCase().indexOf(search) &gt; <span class="number">-1</span></span><br><span class="line">                    &#125;)</span><br><span class="line">                &#125;)</span><br><span class="line">            &#125;</span><br><span class="line">        <span class="comment">//数据绑定</span></span><br><span class="line">        <span class="keyword">this</span>.items = <span class="keyword">this</span>.searchData;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="添加管理员"><a href="#添加管理员" class="headerlink" title="添加管理员"></a>添加管理员</h2><blockquote>
+<ul>
+<li>1.前端定义用户密码格式</li>
+<li>2.定义数据模块</li>
+<li>3.给密码加密  <code>cnpm install bcryptjs --save</code></li>
+<li>4.在管理员数据模型中添加 select:false</li>
+<li>4.select:false 限制管理员查看到密码</li>
+</ul>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> mongoose = <span class="built_in">require</span>(<span class="string">'mongoose'</span>);</span><br><span class="line"><span class="keyword">const</span> bcrypt = <span class="built_in">require</span>(<span class="string">'bcryptjs'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> shechma = mongoose.Schema(&#123;</span><br><span class="line"></span><br><span class="line">    user:&#123;<span class="attr">type</span>:<span class="built_in">String</span>&#125;,</span><br><span class="line"></span><br><span class="line">    pass:&#123;</span><br><span class="line">        type:<span class="built_in">String</span>,</span><br><span class="line">        <span class="comment">//编辑是不显示密码</span></span><br><span class="line">        select:<span class="literal">false</span>,</span><br><span class="line">        <span class="comment">// set方法 </span></span><br><span class="line">        <span class="keyword">set</span>(val)&#123;</span><br><span class="line">            <span class="comment">//给用户填写的密码加密  hashSync() bcryptjs 加密方法</span></span><br><span class="line">            <span class="keyword">return</span> bcrypt.hashSync(val, <span class="number">10</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    date:&#123;</span><br><span class="line">        type:<span class="built_in">String</span>,</span><br><span class="line">        <span class="keyword">default</span>:<span class="keyword">new</span> <span class="built_in">Date</span>().toLocaleDateString()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">module</span>.exports = mongoose.model(<span class="string">'Registered'</span>,shechma);</span><br></pre></td></tr></table></figure>
+
+<h2 id="后台登录"><a href="#后台登录" class="headerlink" title="后台登录"></a><strong>后台登录</strong></h2><blockquote>
+<ul>
+<li>登录</li>
+<li>1.通过用户名查找对应用户</li>
+<li>2.校验密码</li>
+<li>3.返回 token</li>
+<li>4.下载第三方模块  <code>cnpm install jsonwebtoken --save</code></li>
+</ul>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;登陆接口  不是路由调用</span><br><span class="line">app.post(&#39;&#x2F;admin&#x2F;api&#x2F;login&#39;,async (req,res)&#x3D;&gt;&#123;</span><br><span class="line">   const &#123;user,pass&#125; &#x3D; req.body;</span><br><span class="line">   &#x2F;&#x2F;  引入用户模块</span><br><span class="line">   const AdminUser &#x3D; require(&#39;..&#x2F;..&#x2F;models&#x2F;Registered&#39;);</span><br><span class="line">  &#x2F;&#x2F; 1.通过用户名查找对应用户</span><br><span class="line">   const adminName &#x3D; await AdminUser.findOne(&#123;user&#125;).select(&#39;+pass&#39;)</span><br><span class="line">   if(!adminName)&#123;</span><br><span class="line">       return res.status(422).send(&#123;</span><br><span class="line">           message:&quot;用户不存在&quot;</span><br><span class="line">       &#125;)</span><br><span class="line">   &#125;</span><br><span class="line">  &#x2F;&#x2F; 2.校验密码</span><br><span class="line">  const isValue &#x3D;  require(&#39;bcryptjs&#39;).compareSync(pass,adminName.pass);</span><br><span class="line">   if(!isValue)&#123;</span><br><span class="line">      return res.status(422).send(&#123;</span><br><span class="line">          message:&#39;密码错误&#39;</span><br><span class="line">      &#125;)</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; 3.返回token</span><br><span class="line">  const jwt &#x3D; require(&#39;jsonwebtoken&#39;);</span><br><span class="line">  const token &#x3D; jwt.sign(&#123;</span><br><span class="line">      &#x2F;&#x2F; 加密用户的id 并返回</span><br><span class="line">       id:adminName._id</span><br><span class="line">  &#125;,app.get(&#39;secret&#39;));</span><br><span class="line">  res.send(token);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<ul>
+<li>在server文件夹中的index.js中，加上 <code>app.set(&#39;secret&#39;,&#39;this is apple&#39;)</code> 定义参数，将返回的token存储app.set中</li>
+</ul>
+</blockquote>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title='0' data-url='https://link.hhtjim.com/163/1306507078.mp3'></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id='gitalk-container' class="comment link"
+        data-ae='true'
+        data-ci=''
+        data-cs=''
+        data-r=''
+        data-o='1598820109'
+        data-a='1598820109'
+        data-d='false'
+    >查看评论</div>
+
+
+    </div>
+    
+        <div class='side'>
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#node-mongo-vue-js-搭建个人博客"><span class="toc-number">1.</span> <span class="toc-text">node+mongo+vue.js   搭建个人博客</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#网站架构"><span class="toc-number">1.1.</span> <span class="toc-text">网站架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#服务端"><span class="toc-number">1.2.</span> <span class="toc-text">服务端</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#服务端中间介"><span class="toc-number">1.3.</span> <span class="toc-text">服务端中间介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#连接数据库"><span class="toc-number">1.4.</span> <span class="toc-text">连接数据库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#后端-admin"><span class="toc-number">1.5.</span> <span class="toc-text">后端 admin</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#前端-web"><span class="toc-number">1.6.</span> <span class="toc-text">前端 web</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#编辑功能"><span class="toc-number">1.7.</span> <span class="toc-text">编辑功能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#删除功能"><span class="toc-number">1.8.</span> <span class="toc-text">删除功能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#通用CRUD接口"><span class="toc-number">1.9.</span> <span class="toc-text">通用CRUD接口</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分页功能"><span class="toc-number">1.10.</span> <span class="toc-text">分页功能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#搜索功能"><span class="toc-number">1.11.</span> <span class="toc-text">搜索功能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#添加管理员"><span class="toc-number">1.12.</span> <span class="toc-text">添加管理员</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#后台登录"><span class="toc-number">1.13.</span> <span class="toc-text">后台登录</span></a></li></ol></li></ol>
+        </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+</html>
